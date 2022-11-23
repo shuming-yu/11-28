@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="./01-What-is-Function.html">01-What-is-Function</a>
+  <a href="./02-IIFE.html">02-IIFE</a>
+  <a href="./03-closure.html">03-closure</a>
+  <a href="./04-constructor-function.html">04-constructor-function</a>
+
+  <h1>什麼是函式</h1>
+  <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Functions#%E5%AE%9A%E7%BE%A9%E5%87%BD%E5%BC%8F">MDN : 函式- JavaScript</a></h3>
+  <h3>參考 : <a href="https://www.casper.tw/development/2020/09/17/js-expression/">JavaScript 表達式觀念及運用 - JS Expression</a></h3>
+
+  <h3>1. 函式陳述式 ( Statement ) - 具名函式 ( 用於命令執行指定的一系列操作，特徵是 不會回傳結果 )</h3>
+  <h3>2. 函式表達式 ( Expression ) - 匿名函式 ( 又可稱為表示式、運算式，經常透過一些符號結合上下語句並運算及回傳結果，特徵在於 會回傳結果 )</h3>
+  <h3>3. 函式表達式 - 立即函式</h3>
+  <img src="./What-is-Function.PNG" alt="" style="width: 500px;">
+</body>
+
+</html>
+
+<script>
+  // 1. 函式結構 : 函式可以有被呼叫能力、函式內包含了程式碼的片段
+  function afunction(parameter) {
+    var localVariable = '區域變數';
+    console.log(this, localVariable); // this、區域變數
+
+    return '附加一段' + parameter; // 回傳、參數
+  }
+  // var data = afunction('參數');  // 呼叫函式
+  // console.log("data:", data);
+  
+
+  // 2. 名稱
+  // 2.1 函式陳述式 - 具名函式
+  // 透過 function 來宣告一個函式, 必須先補上函式名稱
+  function functionA() {
+    console.log('函式陳述式', '具名函式');
+    console.log("functionA:", functionA);
+  }
+  // functionA();
+
+  // 2.2 函式表達式 - 匿名函式
+  // 先宣告一個 functionB 變數, 後面再宣告一個函式的物件
+  var functionB = function() {
+    console.log('函式表達式', '匿名函式');
+    console.log("functionB:", functionB);
+  }
+  // functionB();
+
+
+  // 1. 陳述式與表達式呼叫
+  function sample_callName(){
+    function callName() {
+      console.log('呼叫小明 1');
+    }
+    var callName;
+    callName = function () {
+      console.log('呼叫小明 2');
+    }
+    callName();
+  }
+
+  // 2. 物件維持傳參考的特性
+    function sample_callObj(){
+    var family = {
+      name: '小明家'
+    }
+    function callObject(obj) {
+      // obj.name = '杰倫家';
+      console.log("obj1", obj);
+      
+      obj = {name: 'Ben!!!!!'};
+      console.log("obj2", obj);
+    }
+    callObject(family);
+    console.log("family:", family);
+  }
+
+</script>

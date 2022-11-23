@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="./01-What-is-Function.html">01-What-is-Function</a>
+  <a href="./02-IIFE.html">02-IIFE</a>
+  <a href="./03-closure.html">03-closure</a>
+  <a href="./04-constructor-function.html">04-constructor-function</a>
+
+  <h1>閉包 Closure</h1>
+  <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures">MDN : 閉包- JavaScript</a></h3>
+  <h3>參考 : <a href="https://pjchender.dev/javascript/js-closure/">[JS] 深入淺出 JavaScript 閉包（closure）</a></h3>
+  
+  <ul>
+    <li>讓函式有自己私有變數, 讓變數保留在該函式中而不會被外在環境干擾</li>
+    <li>當你看到一個 function 內 return 了另一個 function，通常就是有用到閉包的概念。</li>
+  </ul>
+
+
+  <h1>閉包進階：工廠模式及私有方法</h1>
+  <ul>
+    <li>工廠模式 - 依據傳入的變數來定義它的初始值</li>
+    <li>私有方法 - 透過物件形式來對初始值做不同的操作, 大幅增加函式可用性</li>
+  </ul>
+</body>
+
+</html>
+
+<script>
+  // 1. 不使用閉包（closure）的情況
+  function samle_globalCount(){
+    var count = 0;
+    function countDogs() {
+      count += 1;
+      console.log(count + ' dog(s)');
+    }
+  
+    var count = 0;
+    function countCats() {
+      count += 1;
+      console.log(count + ' cat(s)');
+    }
+  
+    countDogs();  // 1 dog(s)
+    countCats();  // 2 cat(s), 我希望是 1 cat(s)
+    countDogs();  // 3 dog(s), 我希望是 2 dog(s)
+    countCats();  // 4 cat(s), 我希望是 2 cat(s)
+  }
+  
+
+  // 2. 透過閉包讓 function 能夠有 private 變數, 透過函式的參數將值代入閉包中
+  function dogHouse(name) {
+    var count = 0;
+    // 2.1
+    // function countDogs() {
+    //   count += 1;
+    //   console.log(count + ' ' + name);
+    // }
+    // return countDogs;
+    
+    // 2.2 簡化程式 - 直接 return function ( 用匿名函式的方式直接把它回傳出來 )
+    return function() {
+      count += 1;
+      console.log(count + ' ' + name);
+    }
+  }
+  
+  // 同樣是使用 dogHouse 但是使用不同的參數
+  function samle_dogHouse(){
+    var countGolden = dogHouse('Golden');
+    countGolden();
+    countGolden();
+    var countPuppy = dogHouse('Puppy');
+    countPuppy();
+    countPuppy();
+  }
+
+
+
+
+  // 函式工廠
+  // 私有方法
+  function samle_sotreMoney(){
+    function storeMoney(initValue) {
+      var money = initValue || 1000;  // 設定預設值, 若無參數則自動給 1000
+      return {
+        increase: function(price) { // 增加
+          money += price;
+        },
+        decrease: function(price) { // 減少
+          money -= price;
+        },
+        value: function() { // 讀取值
+          return money;
+        }
+      }
+    }
+    console.log("storeMoney:", storeMoney);
+    var MingMoney = storeMoney(100);
+    
+    MingMoney.increase(50);
+    // MingMoney.increase(100);
+    MingMoney.decrease(25);
+    MingMoney.decrease(96);
+    // console.log('MingMoney : ', MingMoney.value());
+
+    var JayMoney = storeMoney(1000);
+    JayMoney.increase(1000);
+    JayMoney.decrease(250);
+    // console.log('JayMoney : ', JayMoney.value());
+  }
+</script>

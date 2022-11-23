@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <a href="./01-What-is-Function.html">01-What-is-Function</a>
+  <a href="./02-IIFE.html">02-IIFE</a>
+  <a href="./03-closure.html">03-closure</a>
+  <a href="./04-constructor-function.html">04-constructor-function</a>
+
+  <h1>立即函式</h1>
+  <h3>IIFE 術語表 : <a href="https://developer.mozilla.org/zh-TW/docs/Glossary/IIFE">https://developer.mozilla.org/zh-TW/docs/Glossary/IIFE</a></h3>
+
+  <ul>
+    <li>IIFE 是一個定義完馬上就執行的 JavaScript function</li>
+    <li>function 的名稱其實是不用撰寫的，因為沒有必要，但 JavaScript 不會提示你不用寫</li>
+    <li>當它執行完畢之後，你就無法再次呼叫甚至是外層呼叫</li>
+    <li>宣告在裡面的變數，只有在立即函式內可以取用</li>
+    <li>這樣的寫法可以避免裡面的變數污染到 global scope</li>
+    <li>雖然變數是建立在函式內，但 function 卻是直接建立在全域執行環境下, 因此這時候若有一個類似同名的變數或是函式就會發生衝突</li>
+  </ul>
+</body>
+</html>
+
+<script>
+  // 1. 立即函式 屬於 表達式
+  function sample_iife(){
+    (function IIFE() {
+      console.log('立即函式:', IIFE);
+      // 1. 立刻執行
+      // 2. 無法在函式外被再次執行
+    })();
+  }
+  
+
+  // 2. 限制變數的作用域
+  function sample_scope(){
+    (function() {
+      var Ming = '小明';
+      console.log("Ming:", Ming);
+    })();
+    console.log("Ming:", Ming);  // is not defined
+  }
+
+
+  // 3. 透過小括號 (), 將參數往前傳遞至參數變數 where, 並搭配一個變數來接收 IIFE
+  function sample_parentheses(){
+    var whereMing = (function (where) {
+      console.log("where:", where);
+      return where;
+    })('小明在這');
+    console.log("whereMing:", whereMing);
+  }
+  
+
+  // 4. 立即函式傳遞變數手法
+  function sample_obj(){
+    var a = {}; // 物件本身具有傳參考特性
+    (function(b) {
+      b.person = 'Ben';
+    })(a);
+    console.log("a:", a);
+    
+    (function(c) {
+      c.home = 'home';
+      console.log("c:", c);
+    })(a);
+    console.log("a:", a);
+  }
+
+  // 5. 透過全域物件傳遞值
+  function sample_window(){
+    (function(global) {
+      global.person = 'global - 小明';  // 全域物件掛上 person 屬性
+    })(window)  // window 全域物件
+    ;
+    // 後方立即函式沒帶入任何參數
+    (function(c) {
+      console.log("person:", person);
+    })()
+  }
+
+</script>

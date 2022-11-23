@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="./01-What-is-Function.html">01-What-is-Function</a>
+  <a href="./02-IIFE.html">02-IIFE</a>
+  <a href="./03-closure.html">03-closure</a>
+  <a href="./04-constructor-function.html">04-constructor-function</a>
+
+  <h1>建構子函數的使用</h1>
+  <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/new">MDN : 建構子函數的使用</a></h3>
+
+</body>
+
+</html>
+
+<script>
+  function storeMoney2() {
+      var money = 1000;  // 設定預設值, 若無參數則自動給 1000
+      this.values = 0;
+      console.log("this:", this);
+
+      this.increase = function(price) { // 增加
+        money += price;
+        this.values += price;
+      },
+      this.decrease = function(price) { // 減少
+        money -= price;
+      },
+      this.value = function() { // 讀取值
+        return money;
+      }
+    }
+
+    storeMoney2.prototype.showValues = function() {
+      console.log(this.values);
+      console.log(money);
+    }
+
+    var o1 = new storeMoney2();
+    var o2 = new storeMoney2();
+
+    o2.increase(10);
+    console.log(o2);
+</script>
