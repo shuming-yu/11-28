@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="./01-What-is-Function.html">01-What-is-Function</a>
+  <a href="./02-IIFE.html">02-IIFE</a>
+  <a href="./03-closure.html">03-closure</a>
+  <a href="./04-new-operator.html">04-new-operator</a>
+
+  <h1>建構子函數的使用</h1>
+  <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/new">MDN : 建構子函數的使用</a></h3>
+
+  <ul>
+    <li>1. 編寫建構子函數以完成物件類型的定義。 ( 名稱通常開頭為 "大寫" )</li>
+    <li>2. 定義物件類型，就指定物件類型的名稱、屬性、方法並建立函數。</li>
+    <li>3. 使用 new 建立物件的實體。</li>
+    <li>4. 注意 : this 是用來把傳送給函數的值代入給物件的屬性。</li>
+  </ul>
+</body>
+
+</html>
+
+<script>
+  // 1.
+  function storeMoney() {
+      console.log("this:", this);
+      var money = 100;
+      this.values = 0;
+
+      this.increase = function(price) { // 增加
+        money += price;
+        this.values = money;
+        // this.values += price;
+      },
+      this.decrease = function(price) { // 減少
+        money -= price;
+        this.values = money;
+        // this.values -= price;
+      },
+      this.value = function() { // 讀取值
+        // return money;
+        console.log(this.values);
+        return this.values;
+      }
+    }
+    
+    storeMoney.prototype.showValues = function() {
+      console.log(this.values);
+      return this.values;
+    }
+
+    // 藉由呼叫 new 來建立許多個 storeMoney 的物件
+    var o1 = new storeMoney();
+    var o2 = new storeMoney();
+    
+    o2.increase(10);
+    o2.value();
+    // console.log("o2:", o2);
+
+
+    o1.decrease(200);
+    o1.showValues();
+    
+
+
+  
+  // 2.
+  // var Bibi = {
+    //   name: '比比',
+    //   color: '棕色',
+    //   size: '小',
+    //   bark: function () {
+    //     console.log(this.name + ' 吠叫');
+    //   }
+    // }
+
+    // var Pupu = {
+    //   name: '噗噗',
+    //   color: '白',
+    //   size: '大',
+    //   bark: function () {
+    //     console.log(this.name + ' 吠叫');
+    //   }
+    // }
+    
+    
+    // 2.1 建構函式
+    function Dog(name, color, size) { // 藍圖
+      // 屬性
+      this.name = name;
+      this.color = color;
+      this.size = size;
+    }
+    
+    // 2.2 Bibi 透過 Dog 建構函式產生新物件
+    // 建立 Bibi 並且把指定的值代入給它自己的屬性
+    var Bibi = new Dog('比比', '棕色', '小');
+    // console.log("Bibi:", Bibi);
+    
+    var Pupu = new Dog('噗噗', '白', '大');
+    // console.log("Pupu:", Pupu);
+
+
+    // 2.3 定義的物件 Bibi 加入屬性、方法
+    Bibi.bark = function(){
+      console.log(this.name + ' 吠叫');
+    }
+    console.log("Bibi:", Bibi);
+    Bibi.bark();
+
+    Pupu.money = 1000;
+    console.log("Pupu:", Pupu);
+</script>
