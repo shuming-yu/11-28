@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <a href="./01-What-is-Function.html">01-What-is-Function</a>
+  <a href="./02-IIFE.html">02-IIFE</a>
+  <a href="./03-closure.html">03-closure</a>
+  <a href="./04-new-operator.html">04-new-operator</a>
+  <a href="./05-class.html">05-class</a>
+
+  <h1>Class</h1>
+  <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Classes">MDN : Classes</a></h3>
+
+
+</body>
+</html>
+
+<script>
+  class Animal {
+    constructor(family) {
+      this.kingdom = '動物界';
+      this.family = family || '人科';
+    }
+    
+    move() {  // 未傳入name, 為 undefined
+      console.log(`${this.name} 移動`);
+    }
+  }
+
+  // extends 繼承結構
+  class Dog extends Animal {
+    god = 'God';
+    #fakeGod = 'fakeGod'; // # 私有變數, 外層無法讀取
+
+    constructor(name, color, size) {
+      super('狗科');  // super() 將資料傳到上層
+      this.name = name;
+      this.color = color;
+      this.size = size;
+    }
+    
+    bark() {
+      console.log(`${this.name} 吼叫`);
+      // console.log("this.#fakeGod:", this.#fakeGod);
+    }
+    
+    // 靜態方法 & 變數
+    // 靜態方法(不能調用 this)
+    static add(a, b){
+      // console.log("this:", this);
+      return a + b;
+    }
+    static className = '靜態變數 className';
+  }
+
+  const Bibi = new Dog('小比', '棕色', '小');
+  console.log("Bibi:", Bibi);
+  Bibi.bark();
+  Bibi.move();
+
+  
+  
+  // console.log("Bibi.#fakeGod:", Bibi.#fakeGod);
+  // console.log("Bibi.add(1, 2):", Bibi.add(1, 2));  // 無法呼叫方法
+  // console.log("Bibi.className:", Bibi.className);
+  console.log("Dog.add(1,2):", Dog.add(1, 2));  // 使用建構函式直接呼叫方法
+  console.log("Dog.className:", Dog.className);
+</script>
