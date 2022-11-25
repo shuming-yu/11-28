@@ -48,32 +48,7 @@
   }
 
 
-  // 3. 透過小括號 (), 將參數往前傳遞至參數變數 where, 並搭配一個變數來接收 IIFE
-  function sample_parentheses(){
-    var whereMing = (function (where) {
-      console.log("where:", where);
-      return where;
-    })('小明在這');
-    console.log("whereMing:", whereMing);
-  }
-  
-
-  // 4. 立即函式傳遞變數手法
-  function sample_obj(){
-    var a = {}; // 物件本身具有傳參考特性
-    (function(b) {
-      b.person = 'Ben';
-    })(a);
-    console.log("a:", a);
-    
-    (function(c) {
-      c.home = 'home';
-      console.log("c:", c);
-    })(a);
-    console.log("a:", a);
-  }
-
-  // 5. 透過全域物件傳遞值
+  // 3. 透過全域物件傳遞值
   function sample_window(){
     (function(global) {
       global.person = 'global - 小明';  // 全域物件掛上 person 屬性

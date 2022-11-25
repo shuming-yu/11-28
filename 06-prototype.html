@@ -10,7 +10,31 @@
   <h1>原型</h1>
   <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/Object_prototypes">物件原型</a></h3>
   <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">繼承與原型鏈</a></h3>
+
+
+  <h3>原型的特性</h3>
+  <ul>
+    <li>一樣具有物件的特性, 原型一樣具有屬性 & 方法</li>
+    <li>向上查找, 繼承的物件可以透過向上查找, 查到原型的屬性 & 方法</li>
+    <li>原型可共用方法及屬性, 如多個實體都是繼承同一個原型的話, 原型更新時候, 實體所取用到的原型屬性 & 方法也都是更新後的結果</li>
+  </ul>
+
+  <div>
+    <h3>原型鍊</h3>
+    <img src="./PrototypeProp1.png" alt="" style="width: 500px;">
+    <ul>
+      <li>繼承的部分, 可以一段一段向上繼承, 稱為 原型鍊</li>
+      <li>取用原本的實體裡面的屬性, 使用點運算值去取用它 ( ex. obj.Prop1 )</li>
+      <li>原型取用方式也是相同概念, 取用屬性內容時, 可透過原型鍊的方式向上查找, 直到原型鍊的頂端為止</li>
+    </ul>
   
+    <img src="./PrototypeProp2.png" alt="" style="width: 500px;">
+    <ul>
+      <li>原型另一個特性</li>
+      <li>如果從一個原型新增的兩個實體的話</li>
+      <li>這兩個實體也都會共用同一個原型方法</li>
+    </ul>
+  </div>
 </body>
 </html>
 
