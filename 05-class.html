@@ -16,7 +16,16 @@
   <h1>Class</h1>
   <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Classes">MDN : Classes</a></h3>
 
-
+  <ul>
+    <li>狗的印象就是一個 class, 這個印象沒有辦法直接去運用它, 它只是一個想法</li>
+    <li>透過 new 的方法, 可以將狗給實體化出來, 稱為 instance</li>
+    <li>實體化的狗可以定義有甚麼樣的特徵, 色彩, 體型, 實體化的狗才能真的吠叫</li>
+    <li>實體化的狗是從狗這個思想所延伸出來, 稱為繼承</li>
+    <li>繼承的概念就是一個實體, 可以取用另外一個物件的屬性 & 方法</li>
+    <li>屬性: 色彩 & 大小, 方法: 吠叫</li>
+  </ul>
+  <img src="./class-Dog.png" alt="" style="width:500px">
+  <img src="./Object-oriented-Programming OOP.png" style="width:500px">
 </body>
 </html>
 
@@ -31,14 +40,18 @@
       console.log(`${this.name} 移動`);
     }
   }
-
-  // extends 繼承結構
+  
+  // extends 繼承結構, 用來建立擴展子類別
   class Dog extends Animal {
     god = 'God';
     #fakeGod = 'fakeGod'; // # 私有變數, 外層無法讀取
 
-    constructor(name, color, size) {
+    // constructor() {} // 如果不指定建構子，就會使用預設的建構子
+    constructor(name, color, size) {  // 一個 class 只能有一個稱為 constructor 的特殊物件
       super('狗科');  // super() 將資料傳到上層
+      // 用來提供一個類別呼叫其父類別的函數
+      // 注意 : 若在子類別中有建構子(constructor)，要使用 this 前則必須先呼叫 super()函式，不這樣的話會發生錯誤。
+
       this.name = name;
       this.color = color;
       this.size = size;
@@ -63,7 +76,8 @@
   Bibi.bark();
   Bibi.move();
 
-  
+  const Pupu = new Dog('噗噗', '黑色', '大');
+  // console.log("Pupu:", Pupu);
   
   // console.log("Bibi.#fakeGod:", Bibi.#fakeGod);
   // console.log("Bibi.add(1, 2):", Bibi.add(1, 2));  // 無法呼叫方法

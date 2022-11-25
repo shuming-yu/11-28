@@ -29,50 +29,6 @@
 </html>
 
 <script>
-  // 1.
-  function storeMoney() {
-      console.log("this:", this);
-      var money = 100;
-      this.values = 0;
-
-      this.increase = function(price) { // 增加
-        money += price;
-        this.values = money;
-        // this.values += price;
-      },
-      this.decrease = function(price) { // 減少
-        money -= price;
-        this.values = money;
-        // this.values -= price;
-      },
-      this.value = function() { // 讀取值
-        // return money;
-        console.log(this.values);
-        return this.values;
-      }
-    }
-    
-    storeMoney.prototype.showValues = function() {
-      console.log(this.values);
-      return this.values;
-    }
-
-    // 藉由呼叫 new 來建立許多個 storeMoney 的物件
-    var o1 = new storeMoney();
-    var o2 = new storeMoney();
-    
-    o2.increase(10);
-    o2.value();
-    // console.log("o2:", o2);
-
-
-    o1.decrease(200);
-    o1.showValues();
-    
-
-
-  
-  // 2.
   // var Bibi = {
     //   name: '比比',
     //   color: '棕色',
@@ -92,7 +48,7 @@
     // }
     
     
-    // 2.1 建構函式
+    // 1.1 建構子函式
     function Dog(name, color, size) { // 藍圖
       // 屬性
       this.name = name;
@@ -100,7 +56,7 @@
       this.size = size;
     }
     
-    // 2.2 Bibi 透過 Dog 建構函式產生新物件
+    // 1.2 Bibi 透過 Dog 建構函式產生新物件
     // 建立 Bibi 並且把指定的值代入給它自己的屬性
     var Bibi = new Dog('比比', '棕色', '小');
     // console.log("Bibi:", Bibi);
@@ -109,7 +65,7 @@
     // console.log("Pupu:", Pupu);
 
 
-    // 2.3 定義的物件 Bibi 加入屬性、方法
+    // 1.3 定義的物件 Bibi 加入屬性、方法
     Bibi.bark = function(){
       console.log(this.name + ' 吠叫');
     }
@@ -118,4 +74,48 @@
 
     Pupu.money = 1000;
     console.log("Pupu:", Pupu);
+
+
+
+  // 2.
+  function sample_sotreMoney2(){
+    function storeMoney() {
+      console.log("this:", this);
+      var money = 100;
+      this.values = 0;
+  
+      this.increase = function(price) { // 增加
+        money += price;
+        this.values = money;
+        // this.values += price;
+      },
+      this.decrease = function(price) { // 減少
+        money -= price;
+        this.values = money;
+        // this.values -= price;
+      },
+      this.value = function() { // 讀取值
+        // return money;
+        console.log(this.values);
+        return this.values;
+      }
+    }
+    
+    // storeMoney.prototype.showValues = function() {
+    //   console.log(this.values);
+    //   return this.values;
+    // }
+  
+    // 藉由呼叫 new 來建立許多個 storeMoney 的物件
+    var o1 = new storeMoney();
+    var o2 = new storeMoney();
+    
+    o2.increase(10);
+    o2.value();
+    // console.log("o2:", o2);
+  
+  
+    o1.decrease(200);
+    // o1.showValues();
+  }
 </script>

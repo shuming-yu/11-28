@@ -103,6 +103,7 @@
   function sample_sotreMoney(){
     function storeMoney(initValue) {
       var money = initValue || 1000;  // 設定預設值, 若無參數則自動給 1000
+      console.log("this:", this);
       return {
         increase: function(price) { // 增加
           money += price;
@@ -129,4 +130,5 @@
     JayMoney.decrease(250);
     console.log('JayMoney : ', JayMoney.value());
   }
+
 </script>
