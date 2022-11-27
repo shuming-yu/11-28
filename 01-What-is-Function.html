@@ -57,30 +57,20 @@
   // functionB();
 
 
-  // 1. 陳述式與表達式呼叫
-  function sample_callName(){
-    function callName() {
-      console.log('呼叫小明 1');
-    }
-    var callName = function () {
-      console.log('呼叫小明 2');
-    }
-    callName();
-  }
 
-  // 2. 物件維持傳參考的特性
+  // 物件維持傳參考的特性
     function sample_callObj(){
     var family = {
       name: '小明家'
     }
     function callObject(obj) {
       // 1.
-      // obj.name = '杰倫家';
+      obj.name = '杰倫家';
       console.log("obj1", obj);
       
       // 2.
-      obj = {name: 'Ben!!!!!'};
-      console.log("obj2", obj);
+      // obj = {name: 'Ben!!!!!'};
+      // console.log("obj2", obj);
     }
     callObject(family);
     console.log("family:", family);

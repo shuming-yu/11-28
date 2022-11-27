@@ -80,6 +80,7 @@
   const Pupu = new Dog('噗噗', '黑色', '大');
   // console.log("Pupu:", Pupu);
   
+
   // console.log("Bibi.#fakeGod:", Bibi.#fakeGod);
   // console.log("Bibi.add(1, 2):", Bibi.add(1, 2));  // 無法呼叫方法
   // console.log("Bibi.className:", Bibi.className);
@@ -88,5 +89,20 @@
 
 
 
-  
+  class Cat extends Animal{
+    constructor(name, color, size){
+      super('貓科');
+      this.name = name;
+      this.color = color;
+      this.size = size;
+    }
+
+    moew(){
+      console.log(`${this.name} 喵喵叫`);
+    }
+
+  }
+
+  const Mimi = new Cat('小米', '白色', '小');
+  console.log("Mimi:", Mimi);
 </script>

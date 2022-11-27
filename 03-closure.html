@@ -50,6 +50,7 @@
   function storeMoney() {
       var money = 1000;
       return function(price){
+        console.log("this:", this); // window
         money += price;
         console.log("money:", money);
         return money;
@@ -102,7 +103,7 @@
     MingMoney.decrease(100);
     console.log('MingMoney : ', MingMoney.value());
 
-    var JayMoney = storeMoney(10);
+    var JayMoney = storeMoney(100);
     JayMoney.increase(100);
     JayMoney.decrease(250);
     console.log('JayMoney : ', JayMoney.value());

@@ -67,6 +67,7 @@
 
     // 1.3 定義的物件 Bibi 加入屬性、方法
     // Bibi.bark = function(){
+    //   // console.log("this:", this);
     //   console.log(this.name + ' 吠叫');
     // }
     // console.log("Bibi:", Bibi);
@@ -94,7 +95,8 @@
         return this.total;
       }
     }
-    storeMoney();
+    console.log("storeMoney():", storeMoney());
+    
     
     // 藉由呼叫 new 來建立許多個 storeMoney 的物件
     var o1 = new storeMoney();
