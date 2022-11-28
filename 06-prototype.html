@@ -7,10 +7,24 @@
   <title>Document</title>
 </head>
 <body>
+  <a href="./01-What-is-Function.html">01-What-is-Function</a>
+  <a href="./02-IIFE.html">02-IIFE</a>
+  <a href="./03-closure.html">03-closure</a>
+  <a href="./04-new-operator.html">04-new-operator</a>
+  <a href="./05-class.html">05-class</a>
+  <a href="./06-prototype.html">06-prototype</a>
+
   <h1>原型</h1>
   <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/Object_prototypes">物件原型</a></h3>
   <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">繼承與原型鏈</a></h3>
 
+  <h3>原型繼承</h3>
+  <ul>
+    <li>JavaScript 只有一個特性, 它根本基本上都是物件, 任何內容都是以物件的方式來做建立</li>
+    <li>JavaScript 並沒有 class 概念, 必須使用原型的方式, 來做出類似 class 的一個方法</li>
+    <li>透過原型繼承, 做出類似類別繼承的一個方法</li>
+    <li>JavaScript 雖然沒有 class, 但 ES6 推出了類似 class 的一個建構式的方法</li>
+  </ul>
 
   <h3>原型的特性</h3>
   <ul>
@@ -35,12 +49,61 @@
       <li>這兩個實體也都會共用同一個原型方法</li>
     </ul>
   </div>
+  
 </body>
 </html>
 
 <script>
+  var a = [1, 2, 3];
+  var b = [4, 5, 6];
+
+  function sample_arr(){
+    console.log('a:', a);
+    console.log("a[1]:", a[1]);
+    console.log("a.length:", a.length);
+    // 陣列的本質是物件
+    // 0,1,2 索引位置, length 屬性 -> 屬於物件屬性
 
 
+    // forEach 屬於陣列的原型內的屬性
+    a.forEach(function(i) {
+      console.log("i:", i);
+    });
+  }
+  
+  function sample_addNewMethodarr(){
+    // 新增一個方法在原型鍊上, 取得最後一數值
+    // __proto__ 並非正式寫法
+    a.__proto__.getLast = function () {
+      console.log("this:", this);   // array
+      return this[this.length -1];  // 等同於 a[a.length - 1]
+    }
+  
+    // a & b 陣列同時繼承於陣列的原型
+    // F12查看 Prototype : Array 為陣列的原型, 內層下 Prototype : Object, 陣列原型繼承於物件的原型, 物件原型為最頂層的原型內容
+    console.log('a:', a, 'b:', b);
+    // console.log('a.getLast():', a.getLast());
+    // console.log('b.getLast():', b.getLast());
+  }
+
+  function sample_addNewMethodobj(){
+    var family = {
+      name: '小明家'
+    }
+    // 物件的原型下新增 getName 方法
+    family.__proto__.getName = function() {
+      console.log("this:", this);
+      return this.name;
+    }
+    console.log("family:", family);
+    console.log("family.getName():", family.getName());
+  }
+  
+  function sample_arrGetName(){
+    // b 屬於陣列原型下的實體, 依然可以使用物件原型下的方法
+    b.name = '陣列的屬性';
+    console.log(b.getName());  // getName() 源自於物件原型下
+  }
 
   
 </script>

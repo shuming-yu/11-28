@@ -14,6 +14,7 @@
   <a href="./03-closure.html">03-closure</a>
   <a href="./04-new-operator.html">04-new-operator</a>
   <a href="./05-class.html">05-class</a>
+  <a href="./06-prototype.html">06-prototype</a>
 
   <h1>建構子函數的使用</h1>
   <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/new">MDN : 建構子函數的使用</a></h3>
@@ -54,6 +55,9 @@
       this.name = name;
       this.color = color;
       this.size = size;
+      // this.bark = function(){
+      //   console.log(this.name + ' 吠叫');
+      // }
     }
     
     // 1.2 Bibi 透過 Dog 建構函式產生新物件
@@ -70,12 +74,22 @@
     //   // console.log("this:", this);
     //   console.log(this.name + ' 吠叫');
     // }
+
+
+    Dog.prototype.bark = function() {
+      console.log(this.name + ' 吠叫');
+    }
     // console.log("Bibi:", Bibi);
-    // Bibi.bark();
+    Bibi.bark();
 
     // Pupu.money = 1000;
     // console.log("Pupu:", Pupu);
 
+    
+    // __proto__ 物件上連結原型的屬性 ( 並非正式屬性 )
+    // prototype 函式上
+    // 補充 : 如果原型上新增方法時, 最好的方式從它的函式本身的原型屬性 ( prototype ) 做調整. 若從任意新增物件上去調整他的原型的話, 在維護上會有很大的問題.
+    console.log("Dog.prototype === Bibi.__proto__:", Dog.prototype === Bibi.__proto__) // true
 
 
   // 2.
