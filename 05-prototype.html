@@ -11,8 +11,10 @@
   <a href="./02-IIFE.html">02-IIFE</a>
   <a href="./03-closure.html">03-closure</a>
   <a href="./04-new-operator.html">04-new-operator</a>
-  <a href="./05-class.html">05-class</a>
-  <a href="./06-prototype.html">06-prototype</a>
+  <a href="./05-prototype.html">05-prototype</a>
+  <a href="./06-Object-create.html">06-Object-create</a>
+  <a href="./07-Prototype_constructor.html">07-Prototype_constructor</a>
+  <a href="./08-class.html">08-class</a>
 
   <h1>原型</h1>
   <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/Object_prototypes">物件原型</a></h3>
@@ -34,12 +36,12 @@
   </ul>
 
   <div>
-    <h3>原型鍊</h3>
+    <h3>原型鏈</h3>
     <img src="./PrototypeProp1.png" alt="" style="width: 500px;">
     <ul>
-      <li>繼承的部分, 可以一段一段向上繼承, 稱為 原型鍊</li>
+      <li>繼承的部分, 可以一段一段向上繼承, 稱為 原型鏈</li>
       <li>取用原本的實體裡面的屬性, 使用點運算值去取用它 ( ex. obj.Prop1 )</li>
-      <li>原型取用方式也是相同概念, 取用屬性內容時, 可透過原型鍊的方式向上查找, 直到原型鍊的頂端為止</li>
+      <li>原型取用方式也是相同概念, 取用屬性內容時, 可透過原型鏈的方式向上查找, 直到原型鏈的頂端為止</li>
     </ul>
   
     <img src="./PrototypeProp2.png" alt="" style="width: 500px;">
@@ -57,27 +59,18 @@
   var a = [1, 2, 3];
   var b = [4, 5, 6];
 
-  function sample_arr(){
-    console.log('a:', a);
-    console.log("a[1]:", a[1]);
-    console.log("a.length:", a.length);
-    // 陣列的本質是物件
-    // 0,1,2 索引位置, length 屬性 -> 屬於物件屬性
-
-
-    // forEach 屬於陣列的原型內的屬性
-    a.forEach(function(i) {
-      console.log("i:", i);
-    });
-  }
-  
   function sample_addNewMethodarr(){
-    // 新增一個方法在原型鍊上, 取得最後一數值
+    // 新增一個方法在原型鏈上, 取得最後一數值
     // __proto__ 並非正式寫法
     a.__proto__.getLast = function () {
       console.log("this:", this);   // array
       return this[this.length -1];  // 等同於 a[a.length - 1]
     }
+    // Array.prototype.getLast = function () {
+    //   console.log("this:", this);   // array
+    //   return this[this.length -1];  // 等同於 a[a.length - 1]
+    // }
+
   
     // a & b 陣列同時繼承於陣列的原型
     // F12查看 Prototype : Array 為陣列的原型, 內層下 Prototype : Object, 陣列原型繼承於物件的原型, 物件原型為最頂層的原型內容
@@ -85,6 +78,7 @@
     // console.log('a.getLast():', a.getLast());
     // console.log('b.getLast():', b.getLast());
   }
+
 
   function sample_addNewMethodobj(){
     var family = {
@@ -99,10 +93,11 @@
     console.log("family.getName():", family.getName());
   }
   
+  
   function sample_arrGetName(){
     // b 屬於陣列原型下的實體, 依然可以使用物件原型下的方法
     b.name = '陣列的屬性';
-    console.log(b.getName());  // getName() 源自於物件原型下
+    console.log("b.getName():", b.getName());  // getName() 源自於物件原型下
   }
 
   

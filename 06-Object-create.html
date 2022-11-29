@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <a href="./01-What-is-Function.html">01-What-is-Function</a>
+  <a href="./02-IIFE.html">02-IIFE</a>
+  <a href="./03-closure.html">03-closure</a>
+  <a href="./04-new-operator.html">04-new-operator</a>
+  <a href="./05-prototype.html">05-prototype</a>
+  <a href="./06-Object-create.html">06-Object-create</a>
+  <a href="./07-Prototype_constructor.html">07-Prototype_constructor</a>
+  <a href="./08-class.html">08-class</a>
+
+  <h1>使用 Object.create 建立多層繼承</h1>
+  <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Expressions_and_Operators#%E9%81%8B%E7%AE%97%E5%BC%8F">MDN : 運算式與運算子</a></h3>
+
+
+  <h3>原型鏈 :</h3>
+  <img src="./Object-Create.png" alt="" style="width: 800px;">
+</body>
+</html>
+
+<script>
+    function sample_prototypeChain(){
+      // 原型鏈上新增層級
+      function Dog(name, color, size) {
+        // 屬性
+        this.name = name;
+        this.color = color;
+        this.size = size;
+      }
+      var Bibi = new Dog('比比', '棕色', '小');
+      console.log("Bibi:", Bibi);
+      // Object > Dog > Bibi(實體)
+      // Object > Animal > Dog > (實體)
+      // Object > Animal > Cat
+      // Object > Animal > Human
+    }
+    
+
+
+
+
+    // Animal
+    function Animal(family) {
+      this.kingdom = '動物界';
+      this.family = family || '人科';
+    }
+    Animal.prototype.move = function() {
+      console.log(this.name + ' 移動');
+    }
+
+    // Dog
+    function Dog(name, color, size) {
+      console.log("this:", this);
+      // 透過 call 將 Animal 的建構函式帶入
+      Animal.call(this, '犬科') // this 將 Dog, Animal 綁定在一起 + 傳入科別(犬科)
+
+      this.name = name;
+      this.color = color || '白色';
+      this.size = size || '小';
+    }
+    Dog.prototype = Object.create(Animal.prototype);  // Dog 建構函式繼承於 Animal 原型, 注意 會覆蓋掉 Dog constructor
+    // 2. 手動補回連結 Dog 原本的建構函式(constructor) - 可註解查看
+    Dog.prototype.constructor = Dog;  // F12檢查 Dog.Prototype(Animal).constructor -> 因使用 Object.create 覆蓋掉, 後需補回
+
+
+    Dog.prototype.bark = function () {
+      console.log(this.name + ' 吠叫');
+    }
+    var Bibi = new Dog('比比', '棕色', '小');
+    console.log('Bibi:', Bibi);
+    // Bibi.bark();
+    // Bibi.move();
+
+
+    // 1. 查看 Prototype.constructor
+    var newAnimal = new Animal('新物種');
+    // 建構式產生新的物件, 物件原型內的 constructor 會指向原本的建構函式 Animal
+    // console.log("newAnimal:", newAnimal);
+    
+
+    // Cat
+    function Cat(name, color, size) {
+      Animal.call(this, '貓科');
+      this.name = name;
+      this.color = color || '白色';
+      this.size = size || '小';
+    }
+    Cat.prototype = Object.create(Animal.prototype);
+    Cat.prototype.constructor = Cat;
+    Cat.prototype.meow = function () {
+      console.log(this.name + ' 喵喵叫');
+    }
+
+    var Kity = new Cat('凱蒂');
+    // console.log("Kity:", Kity);
+    // Kity.meow();
+    // Kity.move();
+    // Kity.bark();  // is not a function
+
+
+
+</script>
