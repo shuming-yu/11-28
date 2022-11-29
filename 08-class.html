@@ -44,11 +44,13 @@
       console.log(`${this.name} 移動`);
     }
   }
+
+  const newAnimal = new Animal('新物種');
+  // console.log("newAnimal:", newAnimal);
+
   
   // extends 繼承結構, 用來建立擴展子類別
   class Dog extends Animal {
-    god = 'God';
-    #fakeGod = 'fakeGod'; // # 私有變數, 外層無法讀取
 
     // constructor() {} // 如果不指定建構子，就會使用預設的建構子
     constructor(name, color, size) {  // 一個 class 只能有一個稱為 constructor 的特殊物件
@@ -63,9 +65,9 @@
     
     bark() {
       console.log(`${this.name} 吼叫`);
-      // console.log("this.#fakeGod:", this.#fakeGod);
     }
     
+
     // 靜態方法 & 變數
     // 靜態方法(不能調用 this)
     static add(a, b){
@@ -76,19 +78,19 @@
   }
 
   const Bibi = new Dog('小比', '棕色', '小');
-  console.log("Bibi:", Bibi);
-  Bibi.bark();
-  Bibi.move();
+  // console.log("Bibi:", Bibi);
+  // Bibi.bark();
+  // Bibi.move();
 
   const Pupu = new Dog('噗噗', '黑色', '大');
   // console.log("Pupu:", Pupu);
   
 
-  // console.log("Bibi.#fakeGod:", Bibi.#fakeGod);
   // console.log("Bibi.add(1, 2):", Bibi.add(1, 2));  // 無法呼叫方法
   // console.log("Bibi.className:", Bibi.className);
-  console.log("Dog.add(1,2):", Dog.add(1, 2));  // 使用建構函式直接呼叫方法
-  console.log("Dog.className:", Dog.className);
+
+  // console.log("Dog.add(1,2):", Dog.add(1, 2));  // 使用建構函式直接呼叫方法
+  // console.log("Dog.className:", Dog.className);
 
 
 
@@ -103,9 +105,10 @@
     moew(){
       console.log(`${this.name} 喵喵叫`);
     }
-
   }
 
   const Mimi = new Cat('小米', '白色', '小');
-  console.log("Mimi:", Mimi);
+  // console.log("Mimi:", Mimi);
+  // Mimi.moew();
+  // Mimi.bark();
 </script>
