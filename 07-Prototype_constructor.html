@@ -32,17 +32,27 @@
 
     console.log("Bibi.__proto__ === Dog.prototype:", Bibi.__proto__ === Dog.prototype);
     console.log("Bibi.__proto__.__proto__ === Animal.prototype:", Bibi.__proto__.__proto__ === Animal.prototype);
-    console.log("Bibi.__proto__.__proto__.constructor === Animal:", Bibi.__proto__.__proto__.constructor === Animal);
     console.log("Bibi.__proto__.__proto__.__proto__.__proto__ === null:", Bibi.__proto__.__proto__.__proto__.__proto__ === null);
     
+    console.log("Bibi.__proto__.__proto__.constructor === Animal:", Bibi.__proto__.__proto__.constructor === Animal);
+    
+    // arr 是陣列實例，原型是 Array
+    // arr.__proto__ 是陣列的原型，原型是 Object
+    // arr.__proto__.__proto__ 是物件的原型，原型是 null
+    // arr.__proto__.__proto__.__proto__ 是 null，沒有任何屬性
+
+
+
+
+
     // 為什麼函式可以使用 prototype
     // 所有函式都繼承於 Function 的 prototype
-    console.log("Dog.__proto__ === Function.prototype:", Dog.__proto__ === Function.prototype);
-    console.log("Animal.__proto__ === Function.prototype):", Animal.__proto__ === Function.prototype);
-    console.log("Object.__proto__ === Function.prototype:", Object.__proto__ === Function.prototype);
+    // console.log("Dog.__proto__ === Function.prototype:", Dog.__proto__ === Function.prototype);
+    // console.log("Animal.__proto__ === Function.prototype):", Animal.__proto__ === Function.prototype);
+    // console.log("Object.__proto__ === Function.prototype:", Object.__proto__ === Function.prototype);
 
-    console.log("Function.__proto__ === Function.prototype:", Function.__proto__ === Function.prototype);
-    console.log("Function.__proto__.__proto__ === Object.prototype:", Function.__proto__.__proto__ === Object.prototype);
+    // console.log("Function.__proto__ === Function.prototype:", Function.__proto__ === Function.prototype);
+    // console.log("Function.__proto__.__proto__ === Object.prototype:", Function.__proto__.__proto__ === Object.prototype);
 
   </script>
 </head>
@@ -64,9 +74,8 @@
 
   <h2>原型鏈 架構 :</h2>
   <img src="./Prototype_constructor1.png" alt="" style="width: 600px;">
-
-  <h2>prototype 方法 :</h2>
-  <img src="./Prototype_constructor2.png" alt="" style="width: 600px;">
+  <!-- <hr>
+  <img src="./Prototype_constructor2.png" alt="" style="width: 600px;"> -->
 </body>
 
 </html>

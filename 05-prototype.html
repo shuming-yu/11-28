@@ -20,14 +20,7 @@
   <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/Object_prototypes">物件原型</a></h3>
   <h3>參考 : <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">繼承與原型鏈</a></h3>
 
-  <h3>原型繼承</h3>
-  <ul>
-    <li>JavaScript 只有一個特性, 它根本基本上都是物件, 任何內容都是以物件的方式來做建立</li>
-    <li>JavaScript 並沒有 class 概念, 必須使用原型的方式, 來做出類似 class 的一個方法</li>
-    <li>透過原型繼承, 做出類似類別繼承的一個方法</li>
-    <li>JavaScript 雖然沒有 class, 但 ES6 推出了類似 class 的一個建構式的方法</li>
-  </ul>
-
+  
   <h3>原型的特性</h3>
   <ul>
     <li>一樣具有物件的特性, 原型一樣具有屬性 & 方法</li>
@@ -35,6 +28,13 @@
     <li>原型可共用方法及屬性, 如多個實體都是繼承同一個原型的話, 原型更新時候, 實體所取用到的原型屬性 & 方法也都是更新後的結果</li>
   </ul>
 
+  <h3>原型繼承</h3>
+  <ul>
+    <li>JavaScript 只有一個特性, 它根本基本上都是物件, 任何內容都是以物件的方式來做建立</li>
+    <li>JavaScript 並沒有 class 概念, 必須使用原型的方式, 來做出類似 class 的一個方法</li>
+    <li>透過原型繼承, 做出類似類別繼承的一個方法</li>
+    <li>JavaScript 雖然沒有 class, 但 ES6 推出了類似 class 的一個建構式的方法</li>
+  </ul>
   <div>
     <h3>原型鏈</h3>
     <img src="./PrototypeProp1.png" alt="" style="width: 500px;">
@@ -43,7 +43,7 @@
       <li>取用原本的實體裡面的屬性, 使用點運算值去取用它 ( ex. obj.Prop1 )</li>
       <li>原型取用方式也是相同概念, 取用屬性內容時, 可透過原型鏈的方式向上查找, 直到原型鏈的頂端為止</li>
     </ul>
-  
+    
     <img src="./PrototypeProp2.png" alt="" style="width: 500px;">
     <ul>
       <li>原型另一個特性</li>
